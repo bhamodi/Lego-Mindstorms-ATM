@@ -1,14 +1,14 @@
 /*****************************************************
-* THE LEGO ATM 										 *
-* Author: Jacob Rampertab							 *
-* Author: Baraa Hamodi								 *
-* Author: Hammad Mirza								 *
-* Author: Arthur Dabu								 *
+* THE LEGO ATM                                       *
+* Author: Jacob Rampertab                            *
+* Author: Baraa Hamodi                               *
+* Author: Hammad Mirza                               *
+* Author: Arthur Dabu                                *
 *****************************************************/
 
 /*****************************************************
 * We had issues with pow(10, 2) returning 99 instead *
-* of 100, so the function was overridden.			 *
+* of 100, so the function was overridden.            *
 *****************************************************/
 float pow(int b, int e) {
 	float r = 1;
@@ -73,7 +73,7 @@ void defaults() {
 
 /*****************************************************
 * This function is for setting the default values of *
-* the bank accounts when the file does exist.		 *
+* the bank accounts when the file does exist.        *
 *****************************************************/
 void readIn() {
 	CloseAllHandles(nIoResult);
@@ -90,7 +90,7 @@ void readIn() {
 
 /*****************************************************
 * This function is for updating the account values   *
-* in the file when a trasaction is complete.		 *
+* in the file when a trasaction is complete.         *
 *****************************************************/
 void writeOut() {
 	Delete(sFileName, nIoResult);
@@ -108,12 +108,10 @@ void writeOut() {
 
 /*****************************************************
 * This function is for displaying the scrolling menu *
-* for the enterPin function.						 *
+* for the enterPin function.                         *
 *****************************************************/
 void dispInt(int n, int l) {
-	nxtDisplayCenteredTextLine(l + 2, "%d         %d",
-								(n == 0? 9 : n - 1),
-								(n == 9? 0 : n + 1));
+	nxtDisplayCenteredTextLine(l + 2, "%d         %d", (n == 0? 9 : n - 1), (n == 9? 0 : n + 1));
 	nxtDisplayCenteredBigTextLine(l, "%d", n);
 }
 
@@ -121,13 +119,12 @@ void dispInt(int n, int l) {
 /*****************************************************
 * This function is used for getting the pin number   *
 * from the user through the NXT input methods and    *
-* returns it as a single interger value.			 *
+* returns it as a single interger value.             *
 *****************************************************/
 int enterPin() {
 	eraseDisplay();
 	nxtDisplayTextLine(0, "Please enter pin");
-	int pin = 0,
-		n = 1;
+	int pin = 0, n = 1;
 	dispInt(n, 3);
 	
 	for (int digit = 0; digit < 4; digit++) {
@@ -171,16 +168,14 @@ int enterPin() {
 * This function is used for getting the sequence of  *
 * colours on a debit card which corresponds to a     *
 * certain account number and balance and then        *
-* returns it as a single integer value.				 *
+* returns it as a single integer value.              *
 *****************************************************/
 int swipeCard() {
 	eraseDisplay();
 	nxtDisplayCenteredTextLine(3, "Please swipe");
 	nxtDisplayCenteredTextLine(4, "card");
 	nxtDisplayCenteredTextLine(5, "<------");
-	int oldColour = -2,
-		newColour,
-		cardCode = 0;
+	int oldColour = -2, newColour, cardCode = 0;
 	while (!SensorValue[S2]) {}
 	while (SensorValue[S3]) {}
 	newColour = SensorValue[S1];
@@ -201,7 +196,7 @@ int swipeCard() {
 * This function is used for comparing the card code  *
 * and PIN combination against all other accounts     *
 * stored in the array and returns the index number   *
-* of the matching account.							 *
+* of the matching account.                           *
 *****************************************************/
 int selectAccount() {
 	int c = swipeCard();
@@ -217,7 +212,7 @@ int selectAccount() {
 
 /*****************************************************
 * This function is used for dispensing/outputting    *
-* the amount of dollars requested by the user.		 *
+* the amount of dollars requested by the user.       *
 *****************************************************/
 void dispense(int n) {
 	eraseDisplay();
@@ -248,7 +243,7 @@ void dispense(int n) {
 * This function is used for displaying the detailed  *
 * menu for withdrawing money. It also calls the      *
 * dispenser function and displays appropiriate       *
-* messages to the user.								 *
+* messages to the user.                              *
 *****************************************************/
 void withdraw(int i) {
 	bool exit = false;
@@ -339,7 +334,7 @@ void safetyLockdown() {
 
 /*****************************************************
 * This function is used for displaying the detailed  *
-* menu for depositing money.						 *
+* menu for depositing money.                         *
 *****************************************************/
 void dispDeposit(int n, int l) {
 	char c;
@@ -351,9 +346,7 @@ void dispDeposit(int n, int l) {
 		nxtDisplayCenteredTextLine(l + 2, ".         0");
 	} else {
 		c = n + 48;
-		nxtDisplayCenteredTextLine(l + 2, "%c         %c",
-									(c == '0'? 'D' : n + 47),
-									(c == '9'? '.' : n + 49));
+		nxtDisplayCenteredTextLine(l + 2, "%c         %c", (c == '0'? 'D' : n + 47), (c == '9'? '.' : n + 49));
 	}
 	nxtDisplayCenteredBigTextLine(l, "%c", c);
 }
@@ -362,17 +355,13 @@ void dispDeposit(int n, int l) {
 * This function is used for using the detailed       *
 * menu for withdrawing money. It also turns on the   *
 * motor to deposit money and displays appropiriate   *
-* messages to the user.								 *
+* messages to the user.                              *
 *****************************************************/
 void deposit(int i) {
 	nxtDisplayCenteredTextLine(0, "Enter amount");
 	bool afterDec = false;
-	float amount = 0,
-		adec = 0;
-	int n = 0,
-		bdec = 0,
-		amax = 1,
-		bmax = 1;
+	float amount = 0, adec = 0;
+	int n = 0, bdec = 0, amax = 1, bmax = 1;
 	dispDeposit(n, 5);
 	nxtDisplayCenteredBigTextLine(2, "$%.2f", amount);
 	while (nNxtButtonPressed != -1) {}
@@ -434,11 +423,10 @@ void deposit(int i) {
 }
 
 /*****************************************************
-* This is the main function. 						 *
+* This is the main function.                         *
 *****************************************************/
 task main() {
-	int accInd,
-		nErrors=0;
+	int accInd, nErrors=0;
 	TFileIOResult fr;
 	TFileHandle fh;
 	string fn;
