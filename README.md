@@ -1,4 +1,4 @@
 Lego-Mindstorms-ATM
 ===========================
 
-A classic ATM with a fully integrated security system. 3 of my Mechatronics Engineering classmates and I worked together on this project. Together, we designed, built, developed and presented our very own ATM made out of a Lego Mindstorms NXT 2.0. We developed the embedded code in RobotC.
+This repository features the code behind a fully-functional ATM including an integrated security system. Alongside three of my Mechatronics Engineering colleagues - we designed, built, developed and presented our very own ATM controlled by a Lego Mindstorms NXT 2.0 microcontroller. The source code is written in RobotC, which is just a variation of C.
